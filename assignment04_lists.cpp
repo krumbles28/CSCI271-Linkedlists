@@ -38,10 +38,6 @@ template <typename T> class Node{
 
     ~Node(){
       // call destructors for the rest of the list
-
-/********************************************************************************
-        // replace the following line with your code!!!!!
-*********************************************************************************/
       if(this -> next != NULL){
         delete this -> next;
       }
@@ -65,9 +61,6 @@ template <typename T> class List{
       // destroy the list by destroying the nodes
       ~List(){
 
-/********************************************************************************
-        // replace the following line with your code!!!!!
-*********************************************************************************/
         if(this -> head != NULL){
           delete this -> head;
         }
@@ -82,31 +75,35 @@ template <typename T> class List{
         return (this->size() == 0);
       }
 
-      // addLast(item) adds an element item of type T at the end of the list
+      //addLast(item) adds an element item of type T at the end of the list
       void addLast(T item){
+    
+        Node<T>* pNode = new Node<T>;
+          pNode->element = item;
+          Node<T>* temp = head;
+          if (head == NULL) {
+        head = pNode;
+    }
+        while(temp->next != NULL ){
+            temp = temp->next;
+          }
+            temp->next = pNode;
+        //cout<<"    addLast(item): you need to write this method <-------------"<<endl;
 
-/********************************************************************************
-        // replace the following line with your code!!!!!
-*********************************************************************************/
-        cout<<"    addLast(item): you need to write this method <-------------"<<endl;
-
-        // cout<<"new node added at back!"<<endl; // your method MUST use this!
+       cout<<"new node added at back!"<<endl; // your method MUST use this!
       }
 
       // addFront(item) creates and adds a new element node 
       // containing item at the front of the list
       void addFront(T item){
 
-/********************************************************************************
-        // replace the following line with your code!!!!!
-*********************************************************************************/
         Node<T>* pNode = new Node<T>;
           pNode->element = item;
           pNode->next = this->head;
               this->head = pNode;
         //cout<<"    addFront(item): you need to write this method <-------------"<<endl;
 
-        // cout<<"new node added at front !"<<endl; // your method MUST use this!
+        cout<<"new node added at front !"<<endl; // your method MUST use this!
       }
 
       // addAt(index, item) creates and adds a new element node containing 
@@ -230,7 +227,7 @@ template <typename T> class List{
         }
       }
 
-      // removeFront() deletes the last element and its node in the list
+      // removeFront() deletes the first element and its node in the list
       void removeFront(){
        
 /********************************************************************************
