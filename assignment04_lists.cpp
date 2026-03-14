@@ -1,7 +1,7 @@
 /*************************************************************************
 * Programming Assignment 4 for CSCI 271-001 Spring 2026
 *
-* Author: William Klement (REPLACE THIS WITH YOUR OWN NAME)
+* Author: Kyrah Eagleton
 * OS: Ubuntu Debian Linux 21.1
 * Compiler: g++
 * Date: March 9, 2026
@@ -42,7 +42,10 @@ template <typename T> class Node{
 /********************************************************************************
         // replace the following line with your code!!!!!
 *********************************************************************************/
-      cout<<"    ~Node(): you need to write this method <-------------"<<endl;
+      if(this -> next != NULL){
+        delete this -> next;
+      }
+      //cout<<"    ~Node(): you need to write this method <-------------"<<endl;
 
       // DO NOT REMOVE THE NEXT LINE: keep at end of your destructor method!!
       DN += 1;  // keep track of deallocations
@@ -65,7 +68,10 @@ template <typename T> class List{
 /********************************************************************************
         // replace the following line with your code!!!!!
 *********************************************************************************/
-        cout<<"    ~List(): you need to write this method <-------------"<<endl;
+        if(this -> head != NULL){
+          delete this -> head;
+        }
+        //cout<<"    ~List(): you need to write this method <-------------"<<endl;
 
         DN += 1;  // keep track of deallocations
       }
@@ -94,7 +100,11 @@ template <typename T> class List{
 /********************************************************************************
         // replace the following line with your code!!!!!
 *********************************************************************************/
-        cout<<"    addFront(item): you need to write this method <-------------"<<endl;
+        Node<T>* pNode = new Node<T>;
+          pNode->element = item;
+          pNode->next = this->head;
+              this->head = pNode;
+        //cout<<"    addFront(item): you need to write this method <-------------"<<endl;
 
         // cout<<"new node added at front !"<<endl; // your method MUST use this!
       }
@@ -141,7 +151,7 @@ template <typename T> class List{
         int len = 0;
  
         // start at the head of the list
-        Node<int>* temp = this->head;
+        Node<T>* temp = this->head;
 
         // count the nodes all the way to NULL
         while(temp != NULL){
