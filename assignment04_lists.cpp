@@ -83,11 +83,12 @@ template <typename T> class List{
           Node<T>* temp = head;
           if (head == NULL) {
         head = pNode;
-    }
+    }else{
         while(temp->next != NULL ){
             temp = temp->next;
           }
             temp->next = pNode;
+        }
         //cout<<"    addLast(item): you need to write this method <-------------"<<endl;
 
        cout<<"new node added at back!"<<endl; // your method MUST use this!
@@ -185,13 +186,22 @@ template <typename T> class List{
     
       // removeLast() deletes the last element and its node in the list
       void removeLast(){
+          Node<T>* temp = head;
+          if (temp->next == NULL) {
+        this -> removeFront();
+    }else{
+        while(temp->next->next != NULL ){
+            temp = temp->next;
+          }
+            Node<T>* pNode = temp->next; // hold on to that node temporarily 
+          temp->next = pNode->next;    // relink around the removed node
+          pNode->next = NULL;          // disconnect that node form the list
+          pNode->~Node();  
+                  // destroy the node
+        }
+        //cout<<"    removeLast(): you need to write this method <-------------"<<endl;
 
-/********************************************************************************
-        // replace the following line with your code!!!!!
-*********************************************************************************/
-        cout<<"    removeLast(): you need to write this method <-------------"<<endl;
-
-          // cout<<"last item removed"<<endl; // your method MUST use this!
+         cout<<"last item removed"<<endl; // your method MUST use this!
       }
 
       // removeAt(index) deletes the element and its node found at 
