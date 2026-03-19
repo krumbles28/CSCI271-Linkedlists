@@ -186,9 +186,12 @@ template <typename T> class List{
     
       // removeLast() deletes the last element and its node in the list
       void removeLast(){
-          Node<T>* temp = head;
+      if(this->isEmpty()){
+          cout<<"The list is empty ...! "<<endl;
+        }else{
+          Node<T>* temp = this->head;
           if (temp->next == NULL) {
-        this -> removeFront();
+        temp ->~Node();
     }else{
         while(temp->next->next != NULL ){
             temp = temp->next;
@@ -203,6 +206,7 @@ template <typename T> class List{
 
          cout<<"last item removed"<<endl; // your method MUST use this!
       }
+    }
 
       // removeAt(index) deletes the element and its node found at 
       // position index in the list
@@ -239,25 +243,39 @@ template <typename T> class List{
 
       // removeFront() deletes the first element and its node in the list
       void removeFront(){
-       
-/********************************************************************************
-        // replace the following line with your code!!!!!
-*********************************************************************************/
-        cout<<"    removeFront(): you need to write this method <-------------"<<endl;
+       if(this->isEmpty()){
+          cout<<"The list is empty ...! "<<endl;
+        }else{
+      Node<T>* temp = this->head;
+      head = head->next;
+      temp->next =NULL;
+      temp->~Node();
+        //cout<<"    removeFront(): you need to write this method <-------------"<<endl;
 
-          // cout<<"front item removed"<<endl; // your method MUST use this!
+          cout<<"front item removed"<<endl; // your method MUST use this!
 
       }
-
+    }
       // getAt(int index) returns the element found at position index in the list
       T getAt(int index){
         T res = -9999;        // initialize the results to invalid element
+        if(this->isEmpty()){
+          cout<<"The list is empty ...! "<<endl;
+        }else if(index >= this->size() || index < 0){ // verify index is valid
+          cout<<"index out of bound !"<<endl;
+        }else{
+          int count = 0;
+          Node<T>* temp = this->head; // start at the first node
 
-/********************************************************************************
-        // replace the following line with your code!!!!!
-*********************************************************************************/
-        cout<<"    getAt(): you need to write this method <-------------"<<endl;
-
+          // search for the node at position index
+          while(count < index - 1){ 
+            count++;
+            temp = temp->next;
+          }
+          res = temp ->element;
+          
+        //cout<<"    getAt(): you need to write this method <-------------"<<endl;
+}
         return res;  // return the results -- YOU MUST USE THIS!!!!
       }
 };
@@ -314,7 +332,7 @@ int main(){
         case 5:
             cout<<"enter index:"<<endl;
             cin>>index;
-            cout<<"item at index "<<index<<"is: "<<list.getAt(index)<<endl;
+            cout<<"item at index "<<index<<" is: "<<list.getAt(index)<<endl;
             break;
         case 6:
             list.removeLast();
