@@ -1,0 +1,3 @@
+8.) The runtime complexity is O(n) n being the size of the list. The worst case is adding the new element at the end and the best case is adding at the begininning of the list. At the begining of the implementation it calls the size function which immediatly causes the program to go through every element in the list to know its size.
+
+9.) For the isEmpty() function instead of calling the size function, requiring the overall function to go through all elements before returning a value, the isEmpty() function could instead check if the head node was equal to NULL. If so Then it returns true, otherwise it returns false. 
